@@ -16,23 +16,31 @@ import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angu
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DatepickerFilterExample {
-  incpetionFilter = (d: Date | null): boolean => {
-    const day = (d || new Date()).getDay();
-    // Prevent Saturday and Sunday from being selected.
-    return day !== 0 && day !== 6;
+  inceptionFilter = (inceptionDate: Date | null): boolean => {
+
+    if (inceptionDate == null) {
+      return false;
+    }
+
+
+    return inceptionDate < this.form.controls.expiryDate.value;
+    
   };
 
-  expiryFilter = (d: Date | null): boolean => {
-    const day = (d || new Date()).getDay();
-    // Prevent Saturday and Sunday from being selected.
-    return day !== 0 && day !== 6;
+  expiryFilter = (expiryDate: Date | null): boolean => {
+    if (expiryDate == null) {
+      return false;
+    }
+
+
+    return expiryDate > this.form.controls.inceptionDate.value;
   };
 
-  form = this.fb.group({
+  form = this.fb.nonNullable.group({
     inceptionDate: [new Date(2024, 10, 1), {
       validators: [Validators.required]
     }],
-    expiryDate: [new Date(2023, 9, 30), [Validators.required]]
+    expiryDate: [new Date(2024, 10, 30), [Validators.required]]
  });
 
   constructor(private readonly fb: FormBuilder) {    
