@@ -1,30 +1,42 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {provideNativeDateAdapter} from '@angular/material/core';
+import {ChangeDetectionStrategy, Component, LOCALE_ID} from '@angular/core';
+import {MAT_DATE_LOCALE, provideNativeDateAdapter} from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 /** @title Datepicker with filter validation */
 @Component({
   selector: 'datepicker-filter-example',
   templateUrl: 'datepicker-filter-example.html',
+  styles: [ '.form { display: flex; flex-direction: column; }' ],
   standalone: true,
-  providers: [provideNativeDateAdapter()],
+  providers: [provideNativeDateAdapter(),  {provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
   imports: [MatFormFieldModule, MatInputModule, MatDatepickerModule, FormsModule, ReactiveFormsModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DatepickerFilterExample {
-  myFilter = (d: Date | null): boolean => {
+  incpetionFilter = (d: Date | null): boolean => {
     const day = (d || new Date()).getDay();
     // Prevent Saturday and Sunday from being selected.
     return day !== 0 && day !== 6;
   };
 
-  form: FormGroup;
+  expiryFilter = (d: Date | null): boolean => {
+    const day = (d || new Date()).getDay();
+    // Prevent Saturday and Sunday from being selected.
+    return day !== 0 && day !== 6;
+  };
 
-  constructor(private readonly fb: FormBuilder) {
-    this.form = this.fb.group()
+  form = this.fb.group({
+    inceptionDate: [new Date(2024, 10, 1), {
+      validators: [Validators.required]
+    }],
+    expiryDate: [new Date(2023, 9, 30), [Validators.required]]
+ });
+
+  constructor(private readonly fb: FormBuilder) {    
+
   }
 }
 

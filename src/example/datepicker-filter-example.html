@@ -1,21 +1,20 @@
-<mat-form-field class="example-full-width">
-  <mat-label>From date</mat-label>
-  <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" />
-  <mat-hint>MM/DD/YYYY</mat-hint>
-  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-  <mat-datepicker #picker></mat-datepicker>
-</mat-form-field>
-
-<br />
-<br />
+<div [formGroup]="form" class="form">
 
 <mat-form-field class="example-full-width">
-  <mat-label>To date</mat-label>
-  <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" />
-  <mat-hint>MM/DD/YYYY</mat-hint>
-  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-  <mat-datepicker #picker></mat-datepicker>
+  <mat-label>Inception date</mat-label>
+  <input matInput [matDatepickerFilter]="incpetionFilter" [matDatepicker]="incetionPicker" formControlName="inceptionDate" />
+  <mat-datepicker-toggle matIconSuffix [for]="incetionPicker"></mat-datepicker-toggle>
+  <mat-datepicker #incetionPicker></mat-datepicker>
 </mat-form-field>
+
+<mat-form-field class="example-full-width">
+  <mat-label>Expiry date</mat-label>
+  <input matInput [matDatepickerFilter]="expiryFilter" [matDatepicker]="expiryPicker" formControlName="expiryDate" />
+  <mat-datepicker-toggle matIconSuffix [for]="expiryPicker"></mat-datepicker-toggle>
+  <mat-datepicker #expiryPicker></mat-datepicker>
+</mat-form-field>
+
+</div>
 
 <!-- Copyright 2024 Google LLC. All Rights Reserved.
     Use of this source code is governed by an MIT-style license that
