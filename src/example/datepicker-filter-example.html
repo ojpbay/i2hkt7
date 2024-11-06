@@ -1,20 +1,23 @@
 <div [formGroup]="form" class="form">
 
-<mat-form-field class="example-full-width">
-  <mat-label>Inception date</mat-label>
-  <input matInput [matDatepickerFilter]="inceptionFilter" [matDatepicker]="inceptionPicker" formControlName="inceptionDate" />
-  <mat-datepicker-toggle matIconSuffix [for]="inceptionPicker"></mat-datepicker-toggle>
-  <mat-datepicker #inceptionPicker></mat-datepicker>
-</mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Inception date</mat-label>
+    <input matInput [matDatepickerFilter]="inceptionFilter" [matDatepicker]="inceptionPicker"
+      formControlName="inceptionDate" />
+    <mat-datepicker-toggle matIconSuffix [for]="inceptionPicker"></mat-datepicker-toggle>
+    <mat-datepicker #inceptionPicker></mat-datepicker>
+  </mat-form-field>
 
-<mat-form-field class="example-full-width">
-  <mat-label>Expiry date</mat-label>
-  <input matInput [matDatepickerFilter]="expiryFilter" [matDatepicker]="expiryPicker" formControlName="expiryDate" />
-  <mat-datepicker-toggle matIconSuffix [for]="expiryPicker"></mat-datepicker-toggle>
-  <mat-datepicker #expiryPicker></mat-datepicker>
-</mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Expiry date</mat-label>
+    <input matInput [matDatepickerFilter]="expiryFilter" [matDatepicker]="expiryPicker" formControlName="expiryDate" />
+    <mat-datepicker-toggle matIconSuffix [for]="expiryPicker"></mat-datepicker-toggle>
+    <mat-datepicker #expiryPicker></mat-datepicker>
+  </mat-form-field>
 
 </div>
+
+<p>Form Valid?: {{this.form.valid }}</p>
 
 <!-- Copyright 2024 Google LLC. All Rights Reserved.
     Use of this source code is governed by an MIT-style license that

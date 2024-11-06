@@ -3,7 +3,8 @@ import {MAT_DATE_LOCALE, provideNativeDateAdapter} from '@angular/material/core'
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
+import { JsonPipe } from '@angular/common';
 
 /** @title Datepicker with filter validation */
 @Component({
@@ -12,7 +13,7 @@ import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angu
   styles: [ '.form { display: flex; flex-direction: column; }' ],
   standalone: true,
   providers: [provideNativeDateAdapter(),  {provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
-  imports: [MatFormFieldModule, MatInputModule, MatDatepickerModule, FormsModule, ReactiveFormsModule],
+  imports: [MatFormFieldModule, MatInputModule, MatDatepickerModule, FormsModule, ReactiveFormsModule, JsonPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DatepickerFilterExample {
@@ -37,16 +38,16 @@ export class DatepickerFilterExample {
   };
 
   form = this.fb.nonNullable.group({
-    inceptionDate: [new Date(2024, 10, 1), {
-      validators: [Validators.required]
-    }],
-    expiryDate: [new Date(2024, 10, 30), [Validators.required]]
- });
+    inceptionDate: [new Date(2024, 10, 1), Validators.required],
+    expiryDate: [new Date(2024, 10, 30), Validators.required]
+    });
 
   constructor(private readonly fb: FormBuilder) {    
 
   }
 }
+
+
 
 
 /**  Copyright 2024 Google LLC. All Rights Reserved.
